@@ -11,10 +11,13 @@ export function process(req: Request, res: Response, next: NextFunction) {
   let versement: Versement = mockDb.read(id);
 
   let links: Link[] = [];
+
+  links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "self", "GET"));
+
   if("brouillon" === versement.etat) {
-    links.push(new Link(req.baseUrl + "/versements/{id}", true, "update", "PATCH"));
-    links.push(new Link(req.baseUrl + "/versements/{id}", true, "delete", "DELETE"));
-    links.push(new Link(req.baseUrl + "/versements/{id}/validation", true, "validate", "PUT"));
+    links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "update", "PATCH"));
+    links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "delete", "DELETE"));
+    links.push(new Link(req.baseUrl + "/versements/" + versement.id + "/validate", false, "validate", "PUT"));
   }
 
   let retour = {
@@ -24,7 +27,7 @@ export function process(req: Request, res: Response, next: NextFunction) {
       "client": versement.client,
       "montant": versement.montant,
       "commentaire": versement.commentaire,
-      "links": JSON.stringify(links, linkStringify.replacer)
+      "links": links
     }
   };
 

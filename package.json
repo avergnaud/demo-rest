@@ -13,11 +13,13 @@
     "@types/cors": "^2.8.3",
     "@types/debug": "0.0.30",
     "@types/express": "^4.11.1",
+    "@types/lodash": "^4.14.104",
     "avergnaud-versement": "1.0.2",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "debug": "^3.1.0",
     "express": "^4.16.2",
-    "https": "^1.0.0"
+    "https": "^1.0.0",
+    "lodash": "^4.17.5"
   }
 }

@@ -12,11 +12,19 @@ tsc
 
 node build/index.js
 
+point d'entrée de l'api : http://localhost:3000/api/latest/
 
 curl -X POST -i -H "Content-Type:application/json" -d '{"client":"adrien","montant":100,"commentaire":"versement 100 euros"}' http://localhost:3000/api/latest/versements
 
 curl -X POST -i -H "Content-Type:application/json" -d '{"client":"serge","montant":120,"commentaire":"versement 120 euros"}' http://localhost:3000/api/latest/versements
 
+curl -X POST -i -H "Content-Type:application/json" -d '{"client":"Yan","montant":3000,"commentaire":"versement 3000 euros"}' http://localhost:3000/api/latest/versements
+
+curl -X PATCH -i -H "Content-Type:application/json" -d '{"montant":1000,"commentaire":"correctif"}' http://localhost:3000/api/latest/versements/0
+
+curl -X PUT -i -H "Content-Type:application/json" http://localhost:3000/api/latest/versements/0/validate
+
+curl -X DELETE -i -H "Content-Type:application/json" http://localhost:3000/api/latest/versements/1
 
 
 # lecture

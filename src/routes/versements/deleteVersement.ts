@@ -4,16 +4,17 @@ import Versement from "avergnaud-versement";
 
 export function process(req: Request, res: Response, next: NextFunction) {
     
-  let newOne = new Versement(req.body);
+  let id = parseInt(req.params.id);
 
-  let created: Versement = mockDb.create(newOne);
+  let versement: Versement = mockDb.read(id);
+
+  versement.etat = "supprimé"
 
   let retour = {
-    "createdVersement": created
+    "deletedVersement": versement
   };
+  // retour["versement"] = JSON.stringify(versement);
 
-  res.status(201);
-  res.location('/api/Latest/versements/' + created.getId())
   res.set("Content-Type", "application/json");
   res.json(retour);
 }

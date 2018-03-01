@@ -3,6 +3,9 @@ import * as path from 'path';
 import * as createVersement from './createVersement';
 import * as viewAllVersements from './viewAllVersements';
 import * as getVersement from './getVersement';
+import * as patchVersement from './patchVersement';
+import * as validateVersement from './validateVersement';
+import * as deleteVersement from './deleteVersement';
 
 const packageJson = require(path.join(__dirname, '../../../package.json'));
 
@@ -29,6 +32,9 @@ export default class VersementsRoute {
             }
           });
         this.router.post("/",createVersement.process);
+        this.router.patch("/:id",patchVersement.process);
+        this.router.put("/:id/validate",validateVersement.process);
+        this.router.delete("/:id",deleteVersement.process);
       }
     
 }

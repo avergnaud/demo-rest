@@ -13,22 +13,28 @@ export function process(req: Request, res: Response, next: NextFunction) {
 
   let versement: Versement = mockDb.read(id);
 
-  console.log(req.body);
-
-  if(req.body.client) {
-    versement.client = req.body.client;
+  let retour = {};
+  if(!versement) {
+    // id non trouvé
+    res.status(404);
+    retour = {
+      "error": "not found: " + id
+    };
+  } else {
+    // id existe
+    if(req.body.client) {
+      versement.client = req.body.client;
+    }
+    if(req.body.montant) {
+      versement.montant = req.body.montant;
+    }
+    if(req.body.commentaire) {
+      versement.commentaire = req.body.commentaire;
+    }
+    retour = {
+      "patchedVersement": versement
+    };
   }
-  if(req.body.montant) {
-    versement.montant = req.body.montant;
-  }
-  if(req.body.commentaire) {
-    versement.commentaire = req.body.commentaire;
-  }
-
-  let retour = {
-    "patchedVersement": versement
-  };
-  // retour["versement"] = JSON.stringify(versement);
 
   res.set("Content-Type", "application/json");
   res.json(retour);

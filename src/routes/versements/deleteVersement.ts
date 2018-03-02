@@ -7,13 +7,20 @@ export function process(req: Request, res: Response, next: NextFunction) {
   let id = parseInt(req.params.id);
 
   let versement: Versement = mockDb.read(id);
-
-  versement.etat = "supprimé"
-
-  let retour = {
-    "deletedVersement": versement
-  };
-  // retour["versement"] = JSON.stringify(versement);
+  let retour = {};
+  if(!versement) {
+    // id non trouvé
+    res.status(404);
+    retour = {
+      "error": "not found: " + id
+    };
+  } else {
+    // id existe
+    versement.etat = "supprimé"
+    retour = {
+      "deletedVersement": versement
+    };
+  }
 
   res.set("Content-Type", "application/json");
   res.json(retour);

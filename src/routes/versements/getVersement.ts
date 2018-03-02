@@ -10,26 +10,36 @@ export function process(req: Request, res: Response, next: NextFunction) {
 
   let versement: Versement = mockDb.read(id);
 
-  let links: Link[] = [];
-
-  links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "self", "GET"));
-
-  if("brouillon" === versement.etat) {
-    links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "update", "PATCH"));
-    links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "delete", "DELETE"));
-    links.push(new Link(req.baseUrl + "/versements/" + versement.id + "/validate", false, "validate", "PUT"));
-  }
-
-  let retour = {
-    "versement": {
-      "id": versement.id,
-      "etat": versement.etat,
-      "client": versement.client,
-      "montant": versement.montant,
-      "commentaire": versement.commentaire,
-      "links": links
+  let retour = {};
+  if(!versement) {
+    // id non trouvé
+    res.status(404);
+    retour = {
+      "error": "not found: " + id
+    };
+  } else {
+    // id existe
+    let links: Link[] = [];
+  
+    links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "self", "GET"));
+  
+    if("brouillon" === versement.etat) {
+      links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "update", "PATCH"));
+      links.push(new Link(req.baseUrl + "/versements/" + versement.id, false, "delete", "DELETE"));
+      links.push(new Link(req.baseUrl + "/versements/" + versement.id + "/validate", false, "validate", "PUT"));
     }
-  };
+  
+    retour = {
+      "versement": {
+        "id": versement.id,
+        "etat": versement.etat,
+        "client": versement.client,
+        "montant": versement.montant,
+        "commentaire": versement.commentaire,
+        "links": links
+      }
+    };
+  }
 
   res.set("Content-Type", "application/json");
   res.json(retour);

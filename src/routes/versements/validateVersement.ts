@@ -8,12 +8,20 @@ export function process(req: Request, res: Response, next: NextFunction) {
 
   let versement: Versement = mockDb.read(id);
 
-  versement.etat = "validé"
-
-  let retour = {
-    validatedVersement: versement
-  };
-  // retour["versement"] = JSON.stringify(versement);
+  let retour = {};
+  if(!versement) {
+    // id non trouvé
+    res.status(404);
+    retour = {
+      "error": "not found: " + id
+    };
+  } else {
+    // id existe
+    versement.etat = "validé"
+    retour = {
+      validatedVersement: versement
+    };
+  }
 
   res.set("Content-Type", "application/json");
   res.json(retour);

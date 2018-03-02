@@ -2,7 +2,7 @@
 
 point d'entrée de l'api : http://brochain.hd.free.fr:3000/api/latest/
 
-TEMPORAIRE, utilitaire pour les tests : http://brochain.hd.free.fr:3000/api/latest/tmp_raz
+TEMPORAIRE, utilitaire pour les tests, supprime tous les versements : http://brochain.hd.free.fr:3000/api/latest/tmp_raz
 
 vue des versements : http://brochain.hd.free.fr:3000/api/latest/versements
 

@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import * as path from "path";
 import * as linkStringify from "../links/linkStringify";
 import Link from "../links/Link";
+import * as raz from './raz';
 
 const packageJson = require(path.join(__dirname, "../../../package.json"));
 
@@ -29,5 +30,7 @@ export default class VersementsRoute {
       res.set("Content-Type", "application/json");
       res.json(retour);
     });
+
+    this.router.get("/tmp_raz", raz.process);
   }
 }

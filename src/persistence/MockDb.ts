@@ -9,6 +9,10 @@ class MockDb {
     this.versements = new Map<number, Versement>();
   }
 
+  public tmpraz() {
+    this.versements = new Map<number, Versement>();
+  }
+
   public create = (versement: Versement): Versement => {
     versement.id = MockDb.sequenceId++;
     versement.etat = "brouillon";

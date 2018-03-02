@@ -2,6 +2,8 @@
 
 point d'entrée de l'api : http://brochain.hd.free.fr:3000/api/latest/
 
+TEMPORAIRE, utilitaire pour les tests : http://brochain.hd.free.fr:3000/api/latest/tmp_raz
+
 vue des versements : http://brochain.hd.free.fr:3000/api/latest/versements
 
 curl -X POST -i -H "Content-Type:application/json" -d '{"client":"adrien","montant":100,"commentaire":"versement 100 euros"}' http://brochain.hd.free.fr:3000/api/latest/versements
@@ -29,6 +31,8 @@ tsc
 # run 
 
 node build/index.js
+
+TEMPORAIRE, utilitaire pour les tests : http://localhost:3000/api/latest/tmp_raz
 
 point d'entrée de l'api : http://localhost:3000/api/latest/
 

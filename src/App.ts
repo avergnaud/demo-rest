@@ -34,7 +34,7 @@ const options:cors.CorsOptions = {
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
   credentials: true,
   methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-  origin: "http://localhost:4200",/* ou autre, ici c'est le port par défaut angular */
+  origin: "*",
   preflightContinue: false
 };
 //use cors middleware

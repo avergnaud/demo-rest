@@ -1,3 +1,21 @@
+# TEST
+
+point d'entrée de l'api : http://brochain.hd.free.fr:3000/api/latest/
+
+vue des versements : http://brochain.hd.free.fr:3000/api/latest/versements
+
+curl -X POST -i -H "Content-Type:application/json" -d '{"client":"adrien","montant":100,"commentaire":"versement 100 euros"}' http://brochain.hd.free.fr:3000/api/latest/versements
+
+curl -X POST -i -H "Content-Type:application/json" -d '{"client":"serge","montant":120,"commentaire":"versement 120 euros"}' http://brochain.hd.free.fr:3000/api/latest/versements
+
+curl -X POST -i -H "Content-Type:application/json" -d '{"client":"Yan","montant":3000,"commentaire":"versement 3000 euros"}' http://brochain.hd.free.fr:3000/api/latest/versements
+
+curl -X PATCH -i -H "Content-Type:application/json" -d '{"montant":1000,"commentaire":"correctif"}' http://brochain.hd.free.fr:3000/api/latest/versements/0
+
+curl -X PUT -i -H "Content-Type:application/json" http://brochain.hd.free.fr:3000/api/latest/versements/0/validate
+
+curl -X DELETE -i -H "Content-Type:application/json" http://brochain.hd.free.fr:3000/api/latest/versements/1
+
 # TODO ?
 
         Promise<Versement> versement = restTemplate.getForObject("http://localhost:3000/api/v1/versements/1", Versement);
@@ -70,3 +88,13 @@ or:
 PUT  /expense-report/10929"
 
 "If the URL is not yet created, you should not be using POST to create it while specifying the name. This should result in a resource not found error because does not exist yet"
+
+https://martinfowler.com/articles/richardsonMaturityModel.html
+
+https://www.youtube.com/watch?v=ybwo_70jpGc
+
+https://stackoverflow.com/questions/389169/best-practices-for-api-versioning
+
+https://stackoverflow.com/questions/671118/what-exactly-is-restful-programming
+
+https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf

@@ -14,9 +14,7 @@ export function process(req: Request, res: Response, next: NextFunction) {
   if(!versement) {
     // id non trouvé
     res.status(404);
-    retour = {
-      "error": "not found: " + id
-    };
+    res.end();
   } else {
     // id existe
     let links: Link[] = [];
@@ -38,8 +36,8 @@ export function process(req: Request, res: Response, next: NextFunction) {
         "commentaire": versement.commentaire,
         "links": links
     };
+    res.set("Content-Type", "application/json");
+    res.json(retour);
   }
 
-  res.set("Content-Type", "application/json");
-  res.json(retour);
 }

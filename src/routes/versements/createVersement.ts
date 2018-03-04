@@ -8,12 +8,8 @@ export function process(req: Request, res: Response, next: NextFunction) {
 
   let created: Versement = mockDb.create(newOne);
 
-  let retour = {
-    "createdVersement": created
-  };
-
   res.status(201);
   res.location('/api/Latest/versements/' + created.getId())
   res.set("Content-Type", "application/json");
-  res.json(retour);
+  res.json(created);
 }

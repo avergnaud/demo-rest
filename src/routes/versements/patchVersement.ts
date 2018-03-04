@@ -17,9 +17,7 @@ export function process(req: Request, res: Response, next: NextFunction) {
   if(!versement) {
     // id non trouvé
     res.status(404);
-    retour = {
-      "error": "not found: " + id
-    };
+    res.end();
   } else {
     // id existe
     if(req.body.client) {
@@ -31,11 +29,8 @@ export function process(req: Request, res: Response, next: NextFunction) {
     if(req.body.commentaire) {
       versement.commentaire = req.body.commentaire;
     }
-    retour = {
-      "patchedVersement": versement
-    };
+    res.set("Content-Type", "application/json");
+    res.json(versement);
   }
 
-  res.set("Content-Type", "application/json");
-  res.json(retour);
 }

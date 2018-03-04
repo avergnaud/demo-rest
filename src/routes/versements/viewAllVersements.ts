@@ -10,16 +10,10 @@ export function process(req: Request, res: Response, next: NextFunction) {
 
   let versements: Versement[] = mockDb.readAll();
 
-
-  
   versements.forEach(versement => {
     _.assign(versement, versement, {links: [new Link(req.baseUrl + "/" + versement.id, false, "self", "GET")]});
   });
 
-  let retour = {
-    "versements": versements
-  };
-
   res.set("Content-Type", "application/json");
-  res.json(retour);
+  res.json(versements);
 }

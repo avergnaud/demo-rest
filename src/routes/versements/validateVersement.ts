@@ -12,17 +12,12 @@ export function process(req: Request, res: Response, next: NextFunction) {
   if(!versement) {
     // id non trouvé
     res.status(404);
-    retour = {
-      "error": "not found: " + id
-    };
+    res.end();
   } else {
     // id existe
     versement.etat = "validé"
-    retour = {
-      validatedVersement: versement
-    };
+    res.set("Content-Type", "application/json");
+    res.json(versement);
   }
 
-  res.set("Content-Type", "application/json");
-  res.json(retour);
 }

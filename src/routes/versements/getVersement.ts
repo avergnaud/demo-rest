@@ -29,15 +29,14 @@ export function process(req: Request, res: Response, next: NextFunction) {
       links.push(new Link(req.baseUrl + "/versements/" + versement.id + "/validate", false, "validate", "PUT"));
     }
   
+    //TODO : existe raccourci ?
     retour = {
-      "versement": {
         "id": versement.id,
         "etat": versement.etat,
         "client": versement.client,
         "montant": versement.montant,
         "commentaire": versement.commentaire,
         "links": links
-      }
     };
   }
 

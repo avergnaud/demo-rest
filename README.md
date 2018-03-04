@@ -14,6 +14,8 @@ curl -X POST -i -H "Content-Type:application/json" -d '{"client":"Yan","montant"
 
 curl -X PATCH -i -H "Content-Type:application/json" -d '{"montant":1000,"commentaire":"correctif"}' http://brochain.hd.free.fr:3000/api/latest/versements/0
 
+curl -X GET -i -H "Content-Type:application/json" http://brochain.hd.free.fr:3000/api/latest/versements/1
+
 curl -X PUT -i -H "Content-Type:application/json" http://brochain.hd.free.fr:3000/api/latest/versements/0/validate
 
 curl -X DELETE -i -H "Content-Type:application/json" http://brochain.hd.free.fr:3000/api/latest/versements/1
